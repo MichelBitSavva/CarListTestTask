@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_app.xml"
+    app:startDestination="@id/autoMobileFragment">
+
+    <fragment
+        android:id="@+id/autoMobileFragment"
+        android:name="com.test.automobile.fragment.AutoMobileFragment"
+        android:label="fragment_auto_mobile"
+        tools:layout="@layout/fragment_auto_mobile" />
+</navigation>

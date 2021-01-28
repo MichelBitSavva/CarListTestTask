@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TestJob</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="serverError">Ошибка сервера!</string>
+    <string name="serverErrorMessage">Мы уже решаем проблему, повторите попытку позже</string>
+    <string name="okButton">ok</string>
+    <string name="noInternetMessage">Интернет соединение отсутствует</string>
+    <string name="noInternetHelp">Проверьте ваше интернет соединение и обновите страницу</string>
+    <string name="noInternetCloseApp">Закрыть приложение</string>
+</resources>

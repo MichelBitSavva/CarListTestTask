@@ -62,9 +62,14 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAutoMobileBinding.bind(view)
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onResume() {
+        super.onResume()
+        Log.d("TAG", "onResume: onResume")
         if(isNetworkAvailable(context)){
             if(automobileViewModel.carManufacturer.value == null){
-                Log.d("TAG", "onViewCreated: ${automobileViewModel.carManufacturer.value}")
                 automobileViewModel.getCarManufacturer()
                 automobileViewModel.getCarModel()
             }else{
@@ -116,7 +121,6 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
 
                         }
 
-//                        automobileViewModel.clearCarModel()
                     }
 
 
@@ -134,11 +138,11 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
             }
         })
 
-
     }
 
     override fun onPause() {
         super.onPause()
+        Log.d("TAG", "onPause: PAUSE")
         automobileViewModel.carModelList.clear()
         automobileViewModel.carManufacturerList.clear()
     }

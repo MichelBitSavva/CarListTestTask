@@ -9,10 +9,14 @@ import com.test.automobile.model.carModel.CarModels
 import com.test.automobile.model.carModel.JsonCarModel
 import com.test.automobile.repository.AutomobileRepository
 import com.test.automobile.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class AutomobileViewModel (
+
+@HiltViewModel
+class AutomobileViewModel @Inject constructor(
         private val automobileRepository: AutomobileRepository
 ) : ViewModel() {
     val carManufacturer: MutableLiveData<Resource<JsonCarManufacturer>> = MutableLiveData()

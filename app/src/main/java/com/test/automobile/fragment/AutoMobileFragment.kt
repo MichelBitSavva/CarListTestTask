@@ -10,8 +10,10 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.test.automobile.R
 import com.test.automobile.adapters.ExpandableListViewAutomobileAdapter
@@ -27,17 +29,19 @@ import com.test.automobile.utils.hide
 import com.test.automobile.utils.show
 import com.test.automobile.viewModel.AutomobileViewModel
 import com.test.automobile.viewModelFactory.AutomobileViewModelProviderFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
 
 
     private var _binding: FragmentAutoMobileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var automobileViewModel: AutomobileViewModel
+    private  val automobileViewModel: AutomobileViewModel by viewModels()
     private lateinit var expandableListViewAutomobileAdapter: ExpandableListViewAutomobileAdapter
 
 
@@ -45,15 +49,15 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val automobileRepository = AutomobileRepository()
-        val automobileViewModelProviderFactory = AutomobileViewModelProviderFactory(
-                automobileRepository
-        )
-        automobileViewModel = ViewModelProvider(
-                this,
-                automobileViewModelProviderFactory
-        ).get(AutomobileViewModel::class.java)
-
+//        val automobileRepository = AutomobileRepository()
+//        val automobileViewModelProviderFactory = AutomobileViewModelProviderFactory(
+//                automobileRepository
+//        )
+//        automobileViewModel = ViewModelProvider(
+//                this,
+//                automobileViewModelProviderFactory
+//        ).get(AutomobileViewModel::class.java)
+//
     }
 
 
@@ -62,12 +66,15 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAutoMobileBinding.bind(view)
 
+        binding.materialButton.setOnClickListener {
+            findNavController().navigate(R.id.action_autoMobileFragment_to_photoCropFragment)
+        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onResume() {
         super.onResume()
-        Log.d("TAG", "onResume: onResume")
         if(isNetworkAvailable(context)){
             if(automobileViewModel.carManufacturer.value == null){
                 automobileViewModel.getCarManufacturer()
@@ -142,7 +149,6 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
 
     override fun onPause() {
         super.onPause()
-        Log.d("TAG", "onPause: PAUSE")
         automobileViewModel.carModelList.clear()
         automobileViewModel.carManufacturerList.clear()
     }

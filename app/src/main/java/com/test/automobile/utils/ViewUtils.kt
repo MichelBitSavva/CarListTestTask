@@ -1,5 +1,6 @@
 package com.test.automobile.utils
 
+import android.text.Editable
 import android.view.View
 import android.widget.*
 
@@ -15,6 +16,8 @@ fun ProgressBar.hide() {
 fun ProgressBar.gone() {
     visibility = View.GONE
 }
+
+fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
 
 

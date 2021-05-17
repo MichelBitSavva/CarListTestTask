@@ -3,11 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_app.xml"
-    app:startDestination="@id/autoMobileFragment">
+    app:startDestination="@id/mainMenuFragment">
 
     <fragment
         android:id="@+id/autoMobileFragment"
         android:name="com.test.automobile.fragment.AutoMobileFragment"
         android:label="fragment_auto_mobile"
-        tools:layout="@layout/fragment_auto_mobile" />
+        tools:layout="@layout/fragment_auto_mobile" >
+        <action
+            android:id="@+id/action_autoMobileFragment_to_photoCropFragment"
+            app:destination="@id/photoCropFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoCropFragment"
+        android:name="com.test.automobile.fragment.PhotoCropFragment"
+        android:label="fragment_photo_crop"
+        tools:layout="@layout/fragment_photo_crop" />
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.test.automobile.fragment.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_photoCropFragment"
+            app:destination="@id/photoCropFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_autoMobileFragment"
+            app:destination="@id/autoMobileFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_qrCodeFragment"
+            app:destination="@id/qrCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrCodeFragment"
+        android:name="com.test.automobile.fragment.QrCodeFragment"
+        android:label="fragment_qr_code"
+        tools:layout="@layout/fragment_qr_code" >
+        <action
+            android:id="@+id/action_qrCodeFragment_to_scanerFragment"
+            app:destination="@id/scanerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanerFragment"
+        android:name="com.test.automobile.fragment.ScanerFragment"
+        android:label="fragment_scaner"
+        tools:layout="@layout/fragment_scaner" />
 </navigation>

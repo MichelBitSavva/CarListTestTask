@@ -11,7 +11,7 @@ buildscript {
         espressoVersion = '3.3.0'
         fragmentVersion = '1.2.5'
         glideVersion = '4.10.0'
-        gradleVersion = '4.1.1'
+        gradleVersion = '4.2.0'
         gsonVersion = '2.8.5'
         junitVersion = '4.13'
         ktlintVersion = '0.33.0'
@@ -29,6 +29,7 @@ buildscript {
         uiAutomatorVersion = '2.2.0'
         viewPagerVersion = '1.0.0'
         workVersion = '2.4.0'
+        hilt_version = '2.35'
     }
 
     repositories {
@@ -41,6 +42,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath 'com.google.gms:google-services:4.3.4'
+
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

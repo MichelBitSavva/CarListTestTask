@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.test.automobile.R
 import com.test.automobile.databinding.FragmentAutoMobileBinding
 import com.test.automobile.databinding.FragmentPhotoCropBinding
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -20,7 +21,7 @@ import java.io.File
 
 val REQUEST_IMAGE = 1
 
-
+@AndroidEntryPoint
 class PhotoCropFragment : Fragment(R.layout.fragment_photo_crop) {
     private var _binding: FragmentPhotoCropBinding? = null
     private val binding get() = _binding!!

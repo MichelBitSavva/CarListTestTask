@@ -15,23 +15,17 @@ class MainActivity : AppCompatActivity() {
 
     private val STORAGE_PERMISSIONS = arrayOf(
         Manifest.permission.CAMERA
-
-
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         verifyPermissions()
-        val sharedViewModel: SharedViewModel by viewModels()
     }
 
-
     private fun verifyPermissions() {
-
         val permissionCamera =
             ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-
 
         if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
@@ -40,7 +34,5 @@ class MainActivity : AppCompatActivity() {
                 1
             )
         }
-
-
     }
 }

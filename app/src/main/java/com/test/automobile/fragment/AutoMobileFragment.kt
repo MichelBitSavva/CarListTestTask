@@ -46,21 +46,6 @@ class AutoMobileFragment : Fragment(R.layout.fragment_auto_mobile) {
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//        val automobileRepository = AutomobileRepository()
-//        val automobileViewModelProviderFactory = AutomobileViewModelProviderFactory(
-//                automobileRepository
-//        )
-//        automobileViewModel = ViewModelProvider(
-//                this,
-//                automobileViewModelProviderFactory
-//        ).get(AutomobileViewModel::class.java)
-//
-    }
-
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

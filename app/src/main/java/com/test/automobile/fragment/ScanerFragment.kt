@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
+import com.budiyev.android.codescanner.ErrorCallback
 import com.google.gson.Gson
 import com.test.automobile.R
 import com.test.automobile.databinding.FragmentScanerBinding
@@ -24,7 +26,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
-
+@AndroidEntryPoint
 class ScanerFragment : Fragment(R.layout.fragment_scaner) {
     private var _binding: FragmentScanerBinding? = null
     private val binding get() = _binding!!
@@ -43,13 +45,17 @@ class ScanerFragment : Fragment(R.layout.fragment_scaner) {
                 val answerString = """$it"""
                 val gson = Gson()
                 qrData = gson.fromJson(answerString, QrData::class.java)
-                Log.d("TAG", "qrData: $qrData")
                 sharedViewModel.setQrData(qrData!!)
                 findNavController().navigateUp()
             }
-
         }
 
+        codeScanner.errorCallback = ErrorCallback {
+            activity.runOnUiThread {
+                Toast.makeText(requireContext(), "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG).show()
+            }
+        }
 
         binding.scannerView.setOnClickListener {
             codeScanner.startPreview()
